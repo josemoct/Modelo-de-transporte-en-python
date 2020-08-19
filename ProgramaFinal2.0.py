@@ -1,4 +1,4 @@
-#Importamos dos librerías principales: Tkinter y Docplex
+#Importamos dos librerías principales: Tkinter y Pulp
 from tkinter import *
 import pulp	
 from tkinter import simpledialog
@@ -8,12 +8,16 @@ from tkinter import messagebox
 #Creación de la raiz
 raiz = Tk()
 #Configuraciones principales de la raiz
+#Configuracion del titulo de la ventana
 raiz.title("Modelo de transporte")
+#Configuracion del ícono de la ventana
 raiz.iconbitmap("imagen.ico") 
+#Evita que se cambie el tamaño de la ventana
 raiz.resizable(False, False) 
 
 
 #---------------Creación variables -----------------------------
+#Variables que guarda el texto de las fuentes y destinos
 fuentesTxt = StringVar()
 destinosTxt = StringVar()
 
@@ -30,27 +34,28 @@ miFrame.config(width="600",height="390")
 
 #--------------Creación de los Labels de la ventana ---------------
 
+#Label del titulo
 miLabel = Label(miFrame, text="Solución para modelos de transporte", bg="#F6F5D5", font=("Verdana",18))
 miLabel.place(x=65,y=10)
-
+#Label de la cantidad de fuentes
 miLabel2 = Label(miFrame, text="Ingrese la cantidad de fuentes:", bg="#F6F5D5", font=("Verdana",12))
 miLabel2.place(x=30,y=60)
-
+#Label de la cantidad de destinos
 miLabel3 = Label(miFrame, text="Ingrese la cantidad de destinos:", bg="#F6F5D5", font=("Verdana",12))
 miLabel3.place(x=30,y=130)
-
+#Label donde se refiere a la solución del problema
 miLabel3 = Label(miFrame, text="Solución del problema:", bg="#F6F5D5", font=("Verdana",11))
 miLabel3.place(x=30,y=190)
 
 #--------------Creación de los cuadros de texto en la ventana ---------------
 
-
+#Entrada del número de fuentes
 fuentesEntry = Entry(miFrame, textvariable=fuentesTxt, font=("Verdana",12))
 fuentesEntry.place(x=310,y=60)
-
+#Entrada del número de destinos
 destinosEntry = Entry(miFrame, textvariable=destinosTxt, font=("Verdana",12))
 destinosEntry.place(x=310,y=130)
-
+#Salida de la solución
 cuadroTexto = Text(miFrame, width=48, height=9)
 cuadroTexto.place(x=30, y=220)
 
@@ -141,6 +146,7 @@ def pedirCostos():
 
 #Función para reiniciar valores
 def reiniciar():
+	#Varias globales que guardan el numero de fuentes, destinos y matrices necesarias en todo el programa
 	global numFuentes
 	global numDestinos
 	global fuentes
@@ -148,6 +154,7 @@ def reiniciar():
 	global costos
 	global demandas
 	global ofertas
+	#Inicialización de las variables principales en cero (0)
 	numFuentes = 0
 	numDestinos = 0
 	fuentes = 0
@@ -171,9 +178,10 @@ def prueba():
 
 #--------------Creación de los botones en la ventana-------------------------
 
+#Boton para arrancar a correr el programa una vez inicializadas las variables
 boton = Button(miFrame, text="Aceptar", command=pedirCostos,font=("Verdana",12) )
 boton.place(x=450, y=240)
-
+#Boton para reiniciar y realizar un nuevo ejercicio
 boton2 = Button(miFrame, text="Resetear", command=reiniciar,font=("Verdana",12) )
 boton2.place(x=450, y=280)
 
